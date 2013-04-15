@@ -1,0 +1,210 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 CourierNewPSMT;\f2\fmodern\fcharset0 CourierNewPS-ItalicMT;
+}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww15580\viewh14620\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\b\fs36 \cf0 Monopoly Income Tax
+\b0\fs24 \
+In the game of Monopoly, when you land on Income Tax, you must pay money to the bank. You may either play a $200 flat rate or 10% of your total worth. Write a program 
+\f1 IncomeTax.java
+\f0  that takes an integer command-line argument 
+\f1 money
+\f0  and prints out the amount you pay by picking the smaller of the two choices. You can never have fractional money.\
+	
+\f1 % java IncomeTax 200\
+	20\
+\
+	% java IncomeTax 3000\
+	200\
+\
+\
+
+\f0\b\fs36 Mini-RSA and Prime Factorization
+\b0\fs24 \
+Factoring large numbers is an incredibly important problem in computer security. The RSA cryptography algorithm relies on the assumption that it takes an incredibly long time to factor very large (over 200 digit) numbers with only 2 prime factors. In your work as a Brilliant Computer Scientist, you notice a program that uses a modified version of RSA that only uses numbers under 2 billion instead of the very large numbers it should. To prove to the author that their code has a giant security hole, write a program 
+\f1 MiniRSA.java
+\f0  that takes an integer command-line argument 
+\f1 N 
+\f0 and prints out the two factors, one per line, smallest first. You may assume 
+\f1 N
+\f0  has exactly 2 prime factors.\
+	
+\f1 % java MiniRSA 161\
+	7\
+	23\
+
+\f0 \
+	
+\f1 % java MiniRSA 180125987\
+	8369\
+	21523\
+\
+
+\f0 The author was impressed with your coding ability, and wants to know if you can write a program that prints out the complete prime factorization of any integer. Write a program 
+\f1 PrimeFactors.java 
+\f0 that takes an integer command-line argument 
+\f1 N 
+\f0 and prints out a multiplication expression representing the prime factorization of 
+\f1 N
+\f0 .\
+	
+\f1 % java PrimeFactors 2100\
+	2*2*3*5*5*7\
+\
+	% java PrimeFactors 11\
+	11\
+\
+	% java PrimeFactors 1277659\
+	43*43*691\
+\
+\
+
+\f0\b\fs36 Email Validation
+\b0\fs24 \
+An email address has the following properties:\
+1. It must contain exactly one '@' symbol\
+2. It must contain a dot somewhere after the '@'\
+3. Neither the first character, the last character, nor the character immediately before the '@' may be a dot\
+4. The characters after the '@' may only be letters, digits, hyphens, and dots\
+\
+Write a program, 
+\f1 ValidateEmail.java
+\f0  that takes a String command-line argument and prints out whether or not the argument is a valid email address.\
+\
+
+\b API Specification.
+\b0  Your program must be organized as a library of static methods with the following API:\
+\
+
+\f1 public class ValidateEmail\
+-----------------------------------\
+boolean containsExactlyOne(String s, char c)	
+\f2\i // returns true if the String s contains exactly one of the character c
+\f1\i0 \
+\
+boolean containsAfter(String s, char before, char after)	
+\f2\i // returns true if the String s contains the character 'after' after the character 'before'\
+\
+
+\f1\i0 boolean dotLocationsValid(String s)	// returns true if neither the first character, the last character, nor the character immediately before an '@' in String s is a dot\
+\
+boolean validDomainPart(String s)	// returns true if the characters after the '@' in String s are only letters, digits, hyphens, and dots\
+\
+void main(String[] args)	// read email address as a command-line argument; print whether argument is a valid email\
+\
+
+\f0\b Hint\
+
+\b0 To get the character at position i (starting with 0) of a String s, use s.charAt(i), like in the following example:\
+	
+\f1 String myString = "hello!";\
+	char c = myString.charAt(0);	// returns 'h'\
+	c = myString.charAt(myString.length() - 1);	// returns '!'
+\f0\b \
+\
+Examples
+\f1\b0 \
+% java ValidateEmail me@you.com\
+me@you.com is a valid email address\
+\
+% java ValidateEmail my.name@me.or.you.com\
+my.name@me.or.you.com is a valid email address\
+\
+% java ValidateEmail john@smith@you.com\
+john@smith@you.com is not a valid email address\
+\
+% java ValidateEmail john.@you.com\
+john.@you.com is not a valid email address\
+\
+\
+
+\f0\b\fs36 Parrondo's paradox
+\b0\fs24 \
+Parrondo's paradox states, 
+\i "There exist pairs of games, each with a higher probability of losing than winning, for which it is possible to construct a winning strategy by playing the games alternately."
+\i0  ({\field{\*\fldinst{HYPERLINK "http://en.wikipedia.org/wiki/Parrondo's_paradox"}}{\fldrslt http://en.wikipedia.org/wiki/Parrondo's_paradox}}). Parrondo's paradox can be proven by simulation. In these games, we will simulate the tossing of coins. If the coin lands heads, we win a dollar. If it lands tails, we lose a dollar. Games A and B presented below each are more likely to lose than win. However, when played alternately, the player is more likely to win.\
+\
+
+\b Fair Coin.
+\b0 \
+When tossing a fair coin, the probability of a heads is 0.5 and the probability of a tails is 0.5. After N flips, we expect to have $0.\
+\
+
+\b Game A.
+\b0 \
+P(Heads) = 0.495\
+P(Tails) = 0.505\
+After N flips, we expect to have N * ((0.495*1) + (0.505*-1)) = -0.01N dollars.\
+\
+
+\b Game B.
+\b0 \
+There are two different coins that may be flipped depending on how much money we currently have. If that balance is a multiple of three, flip coin B1, otherwise flip coin B2.\
+Coin B1\
+	P(Heads) = 0.095\
+     	P(Tails)    = 0.905\
+\
+Coin B2\
+	P(Heads) = 0.745\
+      	P(Tails)    = 0.255\
+\
+The math to decide the expected value for game B is far more complicated. Luckily, we can calculate it through simulation!\
+\
+
+\b Part 1. 
+\b0 Simulate the tossing of a fair coin. Write a program 
+\f1 CoinToss.java
+\f0  that takes two Integer command-line arguments: 
+\f1 N
+\f0 , the number of times to flip a coin, and 
+\f1 T
+\f0 , the total number of experiments. In each experiment, we flip the fair coin 
+\f1 N
+\f0  times. Print out the average dollar amount won from the 
+\f1 T
+\f0  experiments.\
+\
+
+\b Part 2. 
+\b0 Modify 
+\f1 CoinToss.java
+\f0  to simulate tossing the two unfair coins. Print out the average dollar amount won from running 
+\f1 T
+\f0  experiments each of the fair coin, game A, and game B.\
+\
+
+\b Part 3. 
+\b0 Modify 
+\f1 CoinToss.java
+\f0  to simulate playing games A and B alternately, in the pattern ABBABB\'85 Print out the average dollar amount from running 
+\f1 T
+\f0  experiments each of the fair coin, game A, game B, and game ABB.\
+\
+
+\b API Specification. 
+\b0 Your program must be organized as a library of static methods with the following API:\
+\
+
+\f1 public class CoinToss\
+-----------------------------------\
+int tossFairCoin()	// randomly tosses a fair coin. Returns 1 if the coin is heads, -1 for tails.\
+\
+int gameA()	// randomly tosses a coin in game A. Returns 1 if the coin is heads, -1 for tails.\
+\
+int gameB(int balance)	// randomly tosses a coin in game B based on the current balance. Returns 1 if the coin is heads, -1 if tails.\
+\
+void main(String[] args)	// read number of flips N and number of experiments T as command-line parameters. Prints the average balance for each game.
+\f0 \
+\
+\
+
+\b Sample Output
+\b0  (your numbers will probably be different, but should be close to these)\
+
+\f1 % java CoinToss 500 10000\
+Fair coin: 0.1712\
+Game A: -4.9364\
+Game B: -5.0102\
+Game ABB: 86.1626}
